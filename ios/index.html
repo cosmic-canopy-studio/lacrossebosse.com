@@ -5,47 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Lacrosse Bosse on iOS</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #e0e0e0; background: #1a1a1a; }
-        h1, h2 { color: #fff; }
-        a { color: #6db3f8; }
-        .cta { display: inline-block; padding: 0.75rem 1.5rem; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; margin: 1rem 0; }
-        .cta:hover { background: #1d4ed8; }
-        .step { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid #2563eb; }
-        .step h3 { margin-bottom: 0.25rem; color: #fff; }
-        .step p { margin-top: 0.25rem; }
-        footer { margin-top: 3rem; color: #666; font-size: 0.875rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #ccc; background: #111; line-height: 1.6; }
+        body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 24px 24px; pointer-events: none; z-index: -1; }
+
+        header { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; border-bottom: 1px solid #222; }
+        .icon { width: 44px; height: 44px; border-radius: 22.37%; }
+        .wordmark { font-size: 1.125rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; text-decoration: none; }
+
+        main { max-width: 640px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; }
+        h1 { font-size: 1.75rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .subtitle { color: #999; margin-bottom: 2rem; }
+
+        .step { margin-bottom: 1.5rem; padding-left: 1.25rem; border-left: 3px solid #007AFF; }
+        .step h3 { color: #fff; font-size: 1rem; margin-bottom: 0.25rem; }
+        .step p { font-size: 0.9375rem; }
+        .step a { color: #6db3f8; }
+
+        .cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: #007AFF; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9375rem; margin: 0.5rem 0; transition: filter 0.15s; }
+        .cta:hover { filter: brightness(1.15); }
+
+        h2 { color: #fff; font-size: 1.125rem; margin: 2rem 0 0.75rem; }
+        ul { padding-left: 1.25rem; }
+        li { margin: 0.25rem 0; font-size: 0.9375rem; }
+
+        footer { border-top: 1px solid #222; padding: 1.5rem; text-align: center; font-size: 0.8125rem; color: #666; }
+        footer a { color: #6db3f8; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <p><a href="../">&larr; Lacrosse Bosse</a></p>
-    <h1>Get Lacrosse Bosse on iOS</h1>
-    <p>Join the beta via TestFlight in 3 steps.</p>
+    <header>
+        <a href="../"><img class="icon" src="../assets/icon-160.webp" alt="Lacrosse Bosse" width="44" height="44"></a>
+        <a class="wordmark" href="../">Lacrosse Bosse</a>
+    </header>
 
-    <div class="step">
-        <h3>1. Install TestFlight</h3>
-        <p>If you don't have it already, download <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store. It's free.</p>
-    </div>
+    <main>
+        <h1>Get Lacrosse Bosse on iOS</h1>
+        <p class="subtitle">Join the beta via TestFlight in 3 steps.</p>
 
-    <div class="step">
-        <h3>2. Tap the invite link</h3>
-        <p>Open this link on your iPhone:</p>
-        <a class="cta" href="https://testflight.apple.com/join/B3PgRUQa">Join TestFlight Beta</a>
-    </div>
+        <div class="step">
+            <h3>1. Install TestFlight</h3>
+            <p>If you don't have it already, download <a href="https://apps.apple.com/app/testflight/id899247664">TestFlight</a> from the App Store. It's free.</p>
+        </div>
 
-    <div class="step">
-        <h3>3. Install and play</h3>
-        <p>Accept the invitation in TestFlight, then tap Install. The app will update automatically when new versions are released.</p>
-    </div>
+        <div class="step">
+            <h3>2. Tap the invite link</h3>
+            <p>Open this link on your iPhone:</p>
+            <a class="cta" href="https://testflight.apple.com/join/B3PgRUQa">Join TestFlight Beta</a>
+        </div>
 
-    <h2>Requirements</h2>
-    <ul>
-        <li>iPhone with iOS 16 or later</li>
-        <li>TestFlight app installed</li>
-    </ul>
+        <div class="step">
+            <h3>3. Install and play</h3>
+            <p>Accept the invitation in TestFlight, then tap Install. The app will update automatically when new versions are released.</p>
+        </div>
 
-    <h2>Feedback</h2>
-    <p>Found a bug or have feedback? Shake your phone while in the app to submit through TestFlight, or <a href="https://github.com/cosmic-canopy-studio/lacrosse-bosse/issues">open an issue</a>.</p>
+        <h2>Requirements</h2>
+        <ul>
+            <li>iPhone with iOS 16 or later</li>
+            <li>TestFlight app installed</li>
+        </ul>
 
-    <footer>&copy; 2025–2026 Cosmic Canopy Studio</footer>
+        <h2>Feedback</h2>
+        <p>Found a bug? Shake your phone while in the app to submit through TestFlight, or <a href="https://github.com/cosmic-canopy-studio/lacrosse-bosse/issues">open an issue</a>.</p>
+    </main>
+
+    <footer>
+        <a href="../privacy/">Privacy</a> · <a href="https://github.com/cosmic-canopy-studio/lacrosse-bosse/issues">Report Issue</a><br>
+        &copy; 2025–2026 Cosmic Canopy Studio
+    </footer>
 </body>
 </html>

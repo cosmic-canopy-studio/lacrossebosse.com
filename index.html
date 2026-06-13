@@ -3,35 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lacrosse Bosse</title>
+    <title>Lacrosse Bosse — Coaches build plays. Players learn them in 3D.</title>
+    <meta name="description" content="A lacrosse training app for teams. Coaches build plays with a 2D editor. Players learn them step-by-step in 3D with AI-powered teammates.">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #e0e0e0; background: #1a1a1a; }
-        h1 { margin-bottom: 0.25rem; color: #fff; }
-        h2 { color: #fff; }
-        .subtitle { color: #999; margin-top: 0; }
-        a { color: #6db3f8; }
-        .cta { display: inline-block; padding: 0.75rem 1.5rem; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; margin: 0.5rem 0.5rem 0.5rem 0; }
-        .cta:hover { background: #1d4ed8; }
-        .links { margin-top: 2rem; }
-        .links a { display: block; margin: 0.5rem 0; }
-        footer { margin-top: 3rem; color: #666; font-size: 0.875rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #ccc;
+            background: #111;
+            line-height: 1.6;
+        }
+
+        /* Dot-grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 24px 24px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 22.37%;
+        }
+
+        .wordmark {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #999;
+            margin-bottom: 2rem;
+        }
+
+        /* CTA buttons */
+        .ctas {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: filter 0.15s;
+        }
+
+        .cta:hover { filter: brightness(1.15); }
+
+        .cta-ios { background: #007AFF; }
+        .cta-android { background: #34A853; }
+
+        .cta svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* Screenshot strip */
+        .screenshots {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            overscroll-behavior-x: contain;
+            padding: 2.5rem 1.5rem;
+            scrollbar-width: none;
+        }
+
+        .screenshots::-webkit-scrollbar { display: none; }
+
+        .screenshots img {
+            flex: 0 0 auto;
+            height: 240px;
+            border-radius: 8px;
+            scroll-snap-align: start;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .feature h2 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #2d8f47;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .feature li {
+            padding-left: 1rem;
+            position: relative;
+            font-size: 0.9375rem;
+        }
+
+        .feature li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #2d8f47;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #222;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.8125rem;
+            color: #666;
+        }
+
+        footer a { color: #6db3f8; text-decoration: none; padding: 0.5rem; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Mobile tweaks */
+        @media (max-width: 480px) {
+            .screenshots img { height: 180px; }
+            .features { gap: 1rem; }
+        }
+
+        @media (max-width: 360px) {
+            .features { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <h1>Lacrosse Bosse</h1>
-    <p class="subtitle">A lacrosse training app for teams.</p>
-    <p>Coaches build plays with a 2D editor. Players learn them step-by-step in 3D with AI-powered teammates.</p>
+    <header>
+        <img class="icon" src="./assets/icon-160.webp" alt="Lacrosse Bosse" width="44" height="44">
+        <span class="wordmark">Lacrosse Bosse</span>
+    </header>
 
-    <h2>Join the Beta</h2>
-    <a class="cta" href="./ios/">iOS (TestFlight)</a>
-    <a class="cta" href="./android/">Android (Google Play)</a>
+    <section class="hero">
+        <h1>Coaches build plays.<br>Players learn them in 3D.</h1>
+        <p>A lacrosse training app for teams.</p>
+        <div class="ctas">
+            <a class="cta cta-ios" href="./ios/">
+                <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                Join Beta on TestFlight
+            </a>
+            <a class="cta cta-android" href="./android/">
+                <svg viewBox="0 0 576 512" aria-hidden="true"><path d="M420.55 301.93a24 24 0 1 1 24-24 24 24 0 0 1-24 24m-265.1 0a24 24 0 1 1 24-24 24 24 0 0 1-24 24m273.7-144.48 47.94-83a10 10 0 1 0-17.27-10l-48.54 84.07a306.2 306.2 0 0 0-134.63 0l-48.54-84.07a10 10 0 1 0-17.27 10l47.94 83C171.85 193.09 114.55 258.34 114.55 336h346.9c0-77.66-57.3-142.91-131.3-178.55"/></svg>
+                Join Beta on Google Play
+            </a>
+        </div>
+    </section>
 
-    <div class="links">
-        <h2>Links</h2>
-        <a href="./privacy/">Privacy Policy</a>
-        <a href="https://github.com/cosmic-canopy-studio/lacrosse-bosse/issues">Report an Issue</a>
-    </div>
+    <section class="screenshots" aria-label="Screenshots">
+        <img src="./assets/1_clipboard.webp" alt="Play clipboard screen" width="534" height="300" loading="lazy">
+        <img src="./assets/2_clipboard_selected.webp" alt="Play selected for practice" width="534" height="300" loading="lazy">
+        <img src="./assets/3_editor.webp" alt="2D play editor" width="534" height="300" loading="lazy">
+        <img src="./assets/4_gameplay.webp" alt="3D gameplay view" width="534" height="300" loading="lazy">
+    </section>
 
-    <footer>&copy; 2025–2026 Cosmic Canopy Studio</footer>
+    <section class="features">
+        <div class="feature">
+            <h2>For Coaches</h2>
+            <ul>
+                <li>Create plays in a 2D editor</li>
+                <li>6 starting formations</li>
+                <li>Save and organize a play library</li>
+            </ul>
+        </div>
+        <div class="feature">
+            <h2>For Players</h2>
+            <ul>
+                <li>Practice plays in 3D</li>
+                <li>AI-powered teammates</li>
+                <li>Step-by-step guidance</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <a href="./privacy/">Privacy</a> · <a href="https://github.com/cosmic-canopy-studio/lacrosse-bosse/issues">Report Issue</a><br>
+        &copy; 2025–2026 Cosmic Canopy Studio
+    </footer>
 </body>
 </html>
