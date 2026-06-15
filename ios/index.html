@@ -17,31 +17,16 @@
         h1 { font-size: 1.75rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
         .subtitle { color: #999; margin-bottom: 2rem; }
 
-        .form-section { margin: 2rem 0; padding: 1.5rem; border: 1px solid #222; border-radius: 12px; background: #1a1a1a; }
-        .form-section h2 { color: #fff; font-size: 1.125rem; margin-bottom: 0.5rem; }
-        .form-section p { font-size: 0.9375rem; color: #999; margin-bottom: 1.25rem; }
+        .step { margin-bottom: 1.5rem; padding-left: 1.25rem; border-left: 3px solid #007AFF; }
+        .step h3 { color: #fff; font-size: 1rem; margin-bottom: 0.25rem; }
+        .step p { font-size: 0.9375rem; }
 
-        form { display: flex; flex-direction: column; gap: 0.75rem; }
-        label { font-size: 0.875rem; color: #ccc; }
-        input[type="email"], input[type="text"] {
-            width: 100%; padding: 0.75rem 1rem; border-radius: 8px;
-            border: 1px solid #333; background: #111; color: #fff;
-            font-size: 1rem; font-family: inherit;
-        }
-        input:focus { outline: none; border-color: #007AFF; }
+        .cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: #007AFF; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.9375rem; margin: 0.5rem 0; transition: filter 0.15s; }
+        .cta:hover { filter: brightness(1.15); }
 
-        .submit-btn {
-            padding: 0.875rem 1.5rem; background: #007AFF; color: #fff;
-            border: none; border-radius: 8px; font-weight: 600;
-            font-size: 0.9375rem; cursor: pointer; transition: filter 0.15s;
-            margin-top: 0.5rem;
-        }
-        .submit-btn:hover { filter: brightness(1.15); }
-        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        .msg { padding: 1rem; border-radius: 8px; font-size: 0.9375rem; margin-top: 1rem; display: none; }
-        .msg.ok { display: block; background: #1a3a1a; border: 1px solid #2d8f47; color: #6fdc6f; }
-        .msg.err { display: block; background: #3a1a1a; border: 1px solid #8f2d2d; color: #dc6f6f; }
+        h2 { color: #fff; font-size: 1.125rem; margin: 2rem 0 0.75rem; }
+        ul { padding-left: 1.25rem; }
+        li { margin: 0.25rem 0; font-size: 0.9375rem; }
 
         footer { border-top: 1px solid #222; padding: 1.5rem; text-align: center; font-size: 0.8125rem; color: #666; }
         footer a { color: #6db3f8; text-decoration: none; }
@@ -55,101 +40,33 @@
     </header>
 
     <main>
-        <div id="gate">
-            <h1>Lacrosse Bosse for iPhone &amp; iPad</h1>
-            <p class="subtitle">Enter your access code to continue.</p>
-            <form id="gate-form" style="display:flex;gap:0.75rem;align-items:center;margin-top:1.5rem">
-                <input type="text" id="code" placeholder="Access code" required style="flex:1;padding:0.75rem 1rem;border-radius:8px;border:1px solid #333;background:#111;color:#fff;font-size:1rem">
-                <button type="submit" class="submit-btn">Enter</button>
-            </form>
-            <p id="gate-err" style="color:#dc6f6f;font-size:0.875rem;margin-top:0.75rem;display:none">Incorrect code. Try again.</p>
+        <h1>Get Lacrosse Bosse on iPhone or iPad</h1>
+        <p class="subtitle">Get early access in 2 steps.</p>
+
+        <div class="step">
+            <h3>1. Get the TestFlight app</h3>
+            <p>TestFlight is Apple's app for trying new apps before they're released.</p>
+            <a class="cta" href="https://apps.apple.com/app/testflight/id899247664">Download TestFlight</a>
         </div>
 
-        <div id="content" style="display:none">
-            <h1>Lacrosse Bosse for iPhone &amp; iPad</h1>
-            <p class="subtitle">Coming soon to the App Store. Sign up below for early beta access via TestFlight.</p>
-
-            <div class="form-section" id="form-section">
-                <h2>Request Early Access</h2>
-                <p>We'll email you an invite link. Once the app is public, no signup will be needed.</p>
-
-                <form id="access-form">
-                    <input type="text" name="captcha" style="display:none" tabindex="-1" autocomplete="off">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                    <label for="club">Club / team name</label>
-                    <input type="text" id="club" name="club" placeholder="e.g. Baltimore Crabs LC" required>
-                    <button type="submit" class="submit-btn" id="btn">Request Access</button>
-                </form>
-            </div>
-
-            <div class="msg" id="msg"></div>
+        <div class="step">
+            <h3>2. Tap the link below and install</h3>
+            <p>Open this on your iPhone or iPad — it will open TestFlight and let you install the app.</p>
+            <a class="cta" href="https://testflight.apple.com/join/B3PgRUQa">Get Lacrosse Bosse</a>
         </div>
+
+        <h2>What you need</h2>
+        <ul>
+            <li>An iPhone or iPad (2018 or newer)</li>
+        </ul>
+
+        <h2>Questions or feedback?</h2>
+        <p>Email us at <a href="mailto:support@lacrossebosse.com">support@lacrossebosse.com</a>.</p>
     </main>
 
     <footer>
         <a href="../privacy/">Privacy</a> · <a href="mailto:support@lacrossebosse.com">Support</a><br>
         &copy; 2025–2026 Cosmic Canopy Studio
     </footer>
-
-    <script>
-        const SECRET = "playunited";
-        const gateForm = document.getElementById("gate-form");
-        const gateErr = document.getElementById("gate-err");
-
-        if (sessionStorage.getItem("unlocked")) {
-            document.getElementById("gate").style.display = "none";
-            document.getElementById("content").style.display = "block";
-        }
-
-        gateForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            if (document.getElementById("code").value.trim().toLowerCase() === SECRET) {
-                sessionStorage.setItem("unlocked", "1");
-                document.getElementById("gate").style.display = "none";
-                document.getElementById("content").style.display = "block";
-            } else {
-                gateErr.style.display = "block";
-            }
-        });
-
-        const API = "https://7hvgs5lmag.execute-api.us-east-1.amazonaws.com/submit";
-        const form = document.getElementById("access-form");
-        const btn = document.getElementById("btn");
-        const msg = document.getElementById("msg");
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            btn.disabled = true;
-            btn.textContent = "Sending…";
-            msg.className = "msg";
-
-            const data = { email: form.email.value, club: form.club.value, captcha: form.captcha.value };
-
-            try {
-                const res = await fetch(API, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                });
-                const json = await res.json();
-                if (res.ok) {
-                    msg.textContent = "✓ You're on the list! We'll email you when the beta is ready.";
-                    msg.className = "msg ok";
-                    document.getElementById("form-section").style.display = "none";
-                } else {
-                    msg.textContent = json.error || "Something went wrong. Try again.";
-                    msg.className = "msg err";
-                    btn.disabled = false;
-                    btn.textContent = "Request Access";
-                }
-            } catch {
-                msg.textContent = "Network error. Check your connection and try again.";
-                msg.className = "msg err";
-                btn.disabled = false;
-                btn.textContent = "Request Access";
-            }
-        });
-    </script>
 </body>
 </html>
