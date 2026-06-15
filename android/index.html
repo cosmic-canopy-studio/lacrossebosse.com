@@ -42,40 +42,74 @@
     </header>
 
     <main>
-        <h1>Get Lacrosse Bosse on Android</h1>
-        <p class="subtitle">Get early access in 3 steps.</p>
-
-        <div class="step">
-            <h3>1. Join the testers list</h3>
-            <p>Tap below to sign up — this gives you access to the app on Google Play:</p>
-            <a class="cta" href="https://groups.google.com/g/lacrosse-bosse-beta">Sign Up for Access</a>
+        <div id="gate">
+            <h1>Get Lacrosse Bosse on Android</h1>
+            <p class="subtitle">Enter your access code to continue.</p>
+            <form id="gate-form" style="display:flex;gap:0.75rem;align-items:center;margin-top:1.5rem">
+                <input type="text" id="code" placeholder="Access code" required style="flex:1;padding:0.75rem 1rem;border-radius:8px;border:1px solid #333;background:#111;color:#fff;font-size:1rem">
+                <button type="submit" class="cta">Enter</button>
+            </form>
+            <p id="gate-err" style="color:#dc6f6f;font-size:0.875rem;margin-top:0.75rem;display:none">Incorrect code. Try again.</p>
         </div>
 
-        <div class="step">
-            <h3>2. Accept the invite</h3>
-            <p>After signing up, tap below to accept:</p>
-            <a class="cta" href="https://play.google.com/apps/testing/com.cosmiccanopy.lacrossebosse">Accept Invite</a>
+        <div id="content" style="display:none">
+            <h1>Get Lacrosse Bosse on Android</h1>
+            <p class="subtitle">Get early access in 3 steps.</p>
+
+            <div class="step">
+                <h3>1. Join the testers list</h3>
+                <p>Tap below to sign up — this gives you access to the app on Google Play:</p>
+                <a class="cta" href="https://groups.google.com/g/lacrosse-bosse-beta">Sign Up for Access</a>
+            </div>
+
+            <div class="step">
+                <h3>2. Accept the invite</h3>
+                <p>After signing up, tap below to accept:</p>
+                <a class="cta" href="https://play.google.com/apps/testing/com.cosmiccanopy.lacrossebosse">Accept Invite</a>
+            </div>
+
+            <div class="step">
+                <h3>3. Install from Google Play</h3>
+                <p>The app will appear in the Play Store. Install it like any other app — updates happen automatically.</p>
+                <a class="cta" href="https://play.google.com/store/apps/details?id=com.cosmiccanopy.lacrossebosse">Install on Google Play</a>
+            </div>
+
+            <h2>What you need</h2>
+            <ul>
+                <li>An Android phone or tablet</li>
+                <li>A Google account</li>
+            </ul>
+
+            <h2>Questions or feedback?</h2>
+            <p>Email us at <a href="mailto:support@lacrossebosse.com">support@lacrossebosse.com</a>.</p>
         </div>
-
-        <div class="step">
-            <h3>3. Install from Google Play</h3>
-            <p>The app will appear in the Play Store. Install it like any other app — updates happen automatically.</p>
-            <a class="cta" href="https://play.google.com/store/apps/details?id=com.cosmiccanopy.lacrossebosse">Install on Google Play</a>
-        </div>
-
-        <h2>What you need</h2>
-        <ul>
-            <li>An Android phone or tablet</li>
-            <li>A Google account</li>
-        </ul>
-
-        <h2>Questions or feedback?</h2>
-        <p>Email us at <a href="mailto:support@lacrossebosse.com">support@lacrossebosse.com</a>.</p>
     </main>
 
     <footer>
         <a href="../privacy/">Privacy</a> · <a href="mailto:support@lacrossebosse.com">Support</a><br>
         &copy; 2025–2026 Cosmic Canopy Studio
     </footer>
+
+    <script>
+        const SECRET = "playunited";
+        const gateForm = document.getElementById("gate-form");
+        const gateErr = document.getElementById("gate-err");
+
+        if (sessionStorage.getItem("unlocked")) {
+            document.getElementById("gate").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+
+        gateForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (document.getElementById("code").value.trim().toLowerCase() === SECRET) {
+                sessionStorage.setItem("unlocked", "1");
+                document.getElementById("gate").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                gateErr.style.display = "block";
+            }
+        });
+    </script>
 </body>
 </html>

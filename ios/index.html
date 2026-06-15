@@ -55,24 +55,36 @@
     </header>
 
     <main>
-        <h1>Lacrosse Bosse for iPhone &amp; iPad</h1>
-        <p class="subtitle">Coming soon to the App Store. Sign up below for early beta access via TestFlight.</p>
-
-        <div class="form-section" id="form-section">
-            <h2>Request Early Access</h2>
-            <p>We'll email you an invite link. Once the app is public, no signup will be needed.</p>
-
-            <form id="access-form">
-                <input type="text" name="captcha" style="display:none" tabindex="-1" autocomplete="off">
-                <label for="email">Email address</label>
-                <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                <label for="club">Club / team name</label>
-                <input type="text" id="club" name="club" placeholder="e.g. Baltimore Crabs LC" required>
-                <button type="submit" class="submit-btn" id="btn">Request Access</button>
+        <div id="gate">
+            <h1>Lacrosse Bosse for iPhone &amp; iPad</h1>
+            <p class="subtitle">Enter your access code to continue.</p>
+            <form id="gate-form" style="display:flex;gap:0.75rem;align-items:center;margin-top:1.5rem">
+                <input type="text" id="code" placeholder="Access code" required style="flex:1;padding:0.75rem 1rem;border-radius:8px;border:1px solid #333;background:#111;color:#fff;font-size:1rem">
+                <button type="submit" class="submit-btn">Enter</button>
             </form>
+            <p id="gate-err" style="color:#dc6f6f;font-size:0.875rem;margin-top:0.75rem;display:none">Incorrect code. Try again.</p>
         </div>
 
-        <div class="msg" id="msg"></div>
+        <div id="content" style="display:none">
+            <h1>Lacrosse Bosse for iPhone &amp; iPad</h1>
+            <p class="subtitle">Coming soon to the App Store. Sign up below for early beta access via TestFlight.</p>
+
+            <div class="form-section" id="form-section">
+                <h2>Request Early Access</h2>
+                <p>We'll email you an invite link. Once the app is public, no signup will be needed.</p>
+
+                <form id="access-form">
+                    <input type="text" name="captcha" style="display:none" tabindex="-1" autocomplete="off">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    <label for="club">Club / team name</label>
+                    <input type="text" id="club" name="club" placeholder="e.g. Baltimore Crabs LC" required>
+                    <button type="submit" class="submit-btn" id="btn">Request Access</button>
+                </form>
+            </div>
+
+            <div class="msg" id="msg"></div>
+        </div>
     </main>
 
     <footer>
@@ -81,6 +93,26 @@
     </footer>
 
     <script>
+        const SECRET = "playunited";
+        const gateForm = document.getElementById("gate-form");
+        const gateErr = document.getElementById("gate-err");
+
+        if (sessionStorage.getItem("unlocked")) {
+            document.getElementById("gate").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+
+        gateForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (document.getElementById("code").value.trim().toLowerCase() === SECRET) {
+                sessionStorage.setItem("unlocked", "1");
+                document.getElementById("gate").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                gateErr.style.display = "block";
+            }
+        });
+
         const API = "https://7hvgs5lmag.execute-api.us-east-1.amazonaws.com/submit";
         const form = document.getElementById("access-form");
         const btn = document.getElementById("btn");
