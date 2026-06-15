@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Run terraform with AWS + Cloudflare credentials from 1Password
+CF_TOKEN=$(op item get gdm62hcpjs2fe63laxwipoln2e --fields password --reveal)
+export CLOUDFLARE_API_TOKEN="$CF_TOKEN"
+exec op run \
+  --env-file=<(printf 'AWS_ACCESS_KEY_ID=op://Private/aws-cli-terraform-lacrosse-bosse/username\nAWS_SECRET_ACCESS_KEY=op://Private/aws-cli-terraform-lacrosse-bosse/credential\nAWS_REGION=us-east-1\n') \
+  -- terraform "$@"

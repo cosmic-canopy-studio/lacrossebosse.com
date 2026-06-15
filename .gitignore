@@ -1,2 +1,7 @@
 node_modules/
 screenshots/
+references/
+infra/.terraform/
+infra/terraform.tfstate*
+infra/lambda/handler.zip
+infra/lambda/__pycache__/
